@@ -159,13 +159,13 @@ local function markNext()
     return
   end
 
-  local id = table.remove(markQueue, 1)
+  local item = table.remove(markQueue, 1)
   local started = noctalia.runAsync({
-    "gh", "api", "--method", "PATCH", "notifications/threads/" .. id,
+    "gh", "api", "--method", item.method, "notifications/threads/" .. item.id,
   }, function(result)
     if result.exitCode ~= 0 or result.timedOut then
       markFailures += 1
-      noctalia.log("github-notifications: failed to mark thread " .. id .. " as read")
+      noctalia.log("github-notifications: failed to update thread " .. item.id)
     end
     markNext()
   end, MARK_TIMEOUT_MS)
@@ -182,17 +182,21 @@ local function markNotifications(request)
   end
 
   local current = noctalia.state.get("notifications") or {}
-  local ids = {}
+  local queue = {}
   local remaining = {}
   for _, item in ipairs(current) do
-    local selected = request.action == "all" or (request.action == "one" and item.id == request.id)
+    local selected = request.action == "all"
+      or ((request.action == "one" or request.action == "done") and item.id == request.id)
     if selected then
-      table.insert(ids, item.id)
+      table.insert(queue, {
+        id = item.id,
+        method = request.action == "done" and "DELETE" or "PATCH",
+      })
     else
       table.insert(remaining, item)
     end
   end
-  if #ids == 0 then
+  if #queue == 0 then
     return
   end
 
@@ -201,7 +205,7 @@ local function markNotifications(request)
     fetching = false
   end
   marking = true
-  markQueue = ids
+  markQueue = queue
   markFailures = 0
   publish(remaining, "marking", "", false)
   markNext()

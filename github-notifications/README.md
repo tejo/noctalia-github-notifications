@@ -1,6 +1,6 @@
 # GitHub Notifications
 
-Show selected unread GitHub notifications in the Noctalia bar, open their issues or pull requests, and mark them as read without opening GitHub's notification inbox.
+Show selected unread GitHub notifications in the Noctalia bar, open their issues or pull requests, and mark them as read or Done without opening GitHub's notification inbox.
 
 ![GitHub Notifications panel](thumbnail.webp)
 
@@ -25,7 +25,7 @@ The plugin uses GitHub CLI authentication and does not read or store a token.
 2. Add the `indicator` widget from **Settings -> Bar -> Widgets**.
 3. Left-click the widget to open the notification panel.
 4. Click a title to open the notification in your browser.
-5. Click a check mark to mark one notification as read, or use **Mark all shown read**.
+5. Click a check mark to mark one notification as read, click the archive button to mark it as Done, or use **Mark all shown read**.
 
 Right-click the bar widget or click the panel's cog button to open plugin settings. The refresh button checks GitHub immediately.
 
@@ -67,4 +67,5 @@ noctalia msg plugin tejo/github-notifications:sync all mark-all
 - The plugin requests unread notifications through `gh api` every five minutes by default.
 - Notification links are opened through `xdg-open`.
 - Marking a notification as read calls GitHub's notification thread API.
+- Marking a notification as Done removes it from the GitHub inbox using the thread API.
 - Screenshot notification entries are public demonstration data, not real inbox content.

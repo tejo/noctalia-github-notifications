@@ -80,6 +80,17 @@ local function notificationRow(item)
           requestMark("one", current.id)
         end,
       }),
+      ui.button({
+        key = "done:" .. current.id,
+        glyph = "archive",
+        variant = "ghost",
+        controlSize = "sm",
+        tooltip = noctalia.tr("action.mark_done"),
+        enabled = status ~= "marking",
+        onClick = function()
+          requestMark("done", current.id)
+        end,
+      }),
     }),
     ui.button({
       key = "open:" .. current.id,

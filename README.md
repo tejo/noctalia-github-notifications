@@ -9,7 +9,7 @@ A native Noctalia v5 plugin that puts GitHub notifications in the desktop bar.
 - Unread count and status-aware GitHub icon in the bar
 - Filterable GitHub notification reasons
 - Notification panel with links to issues and pull requests
-- Mark individual notifications or all displayed notifications as read
+- Mark individual notifications as read or Done, or mark all displayed notifications as read
 - Configurable background refresh interval
 - Uses existing GitHub CLI authentication; the plugin does not store a token
 
@@ -44,6 +44,7 @@ Then add the **GitHub Notifications** `indicator` widget from Noctalia's bar set
 - Right-click the bar widget, or click the cog in its panel, to open settings.
 - Click a notification title to open it in your browser.
 - Click a check mark to mark one notification as read.
+- Click the archive button to mark one notification as Done and remove it from GitHub's inbox.
 - Click **Mark all shown read** to mark all currently displayed notifications as read.
 - Click the refresh button to check immediately.
 

@@ -1,0 +1,126 @@
+id = "tejo/github-notifications"
+name = "GitHub Notifications"
+version = "1.1.0"
+plugin_api = 24
+author = "tejo"
+license = "MIT"
+icon = "brand-github"
+description = "Show selected GitHub notifications in the bar and mark them as read."
+tags = ["bar", "panel", "service", "development", "productivity", "network"]
+dependencies = ["gh", "xdg-open"]
+
+[[setting]]
+key = "refresh_interval"
+type = "int"
+label_key = "settings.refresh_interval.label"
+description_key = "settings.refresh_interval.description"
+default = 300
+min = 60
+max = 3600
+
+[[setting]]
+key = "show_mention"
+type = "bool"
+label_key = "settings.reason.mention.label"
+default = true
+
+[[setting]]
+key = "show_review_requested"
+type = "bool"
+label_key = "settings.reason.review_requested.label"
+default = true
+
+[[setting]]
+key = "show_team_mention"
+type = "bool"
+label_key = "settings.reason.team_mention.label"
+default = false
+
+[[setting]]
+key = "show_assign"
+type = "bool"
+label_key = "settings.reason.assign.label"
+default = false
+
+[[setting]]
+key = "show_comment"
+type = "bool"
+label_key = "settings.reason.comment.label"
+default = false
+
+[[setting]]
+key = "show_author"
+type = "bool"
+label_key = "settings.reason.author.label"
+default = false
+
+[[setting]]
+key = "show_subscribed"
+type = "bool"
+label_key = "settings.reason.subscribed.label"
+default = false
+
+[[setting]]
+key = "show_manual"
+type = "bool"
+label_key = "settings.reason.manual.label"
+default = false
+
+[[setting]]
+key = "show_ci_activity"
+type = "bool"
+label_key = "settings.reason.ci_activity.label"
+default = false
+
+[[setting]]
+key = "show_approval_requested"
+type = "bool"
+label_key = "settings.reason.approval_requested.label"
+default = false
+
+[[setting]]
+key = "show_invitation"
+type = "bool"
+label_key = "settings.reason.invitation.label"
+default = false
+
+[[setting]]
+key = "show_security_alert"
+type = "bool"
+label_key = "settings.reason.security_alert.label"
+default = false
+
+[[setting]]
+key = "show_security_advisory_credit"
+type = "bool"
+label_key = "settings.reason.security_advisory_credit.label"
+default = false
+
+[[setting]]
+key = "show_state_change"
+type = "bool"
+label_key = "settings.reason.state_change.label"
+default = false
+
+[[setting]]
+key = "show_member_feature_requested"
+type = "bool"
+label_key = "settings.reason.member_feature_requested.label"
+default = false
+
+[[service]]
+id = "sync"
+entry = "service.luau"
+
+[[widget]]
+id = "indicator"
+entry = "widget.luau"
+
+[[panel]]
+id = "notifications"
+entry = "panel.luau"
+width = 560
+height = 580
+placement = "attached"
+position = "auto"
+open_near_click = true

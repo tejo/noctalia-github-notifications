@@ -1,0 +1,12 @@
+[[plugin]]
+id = "tejo/github-notifications"
+name = "GitHub Notifications"
+version = "1.1.0"
+author = "tejo"
+license = "MIT"
+icon = "brand-github"
+description = "Show selected GitHub notifications in the bar and mark them as read."
+deprecated = false
+plugin_api = 24
+tags = ["bar", "panel", "service", "development", "productivity", "network"]
+dependencies = ["gh", "xdg-open"]
